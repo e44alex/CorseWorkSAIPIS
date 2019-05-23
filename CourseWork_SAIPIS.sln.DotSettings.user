@@ -1,0 +1,7 @@
+﻿<wpf:ResourceDictionary xml:space="preserve" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:s="clr-namespace:System;assembly=mscorlib" xmlns:ss="urn:shemas-jetbrains-com:settings-storage-xaml" xmlns:wpf="http://schemas.microsoft.com/winfx/2006/xaml/presentation">
+	<s:Int64 x:Key="/Default/CodeStyle/Naming/CSharpAutoNaming/AutoNamingCompletedVersion/@EntryValue">2</s:Int64>
+	<s:String x:Key="/Default/RunConfigs/Active/@EntryValue">3D713AF0611AA0468856FFC75756DCBE</s:String>
+	<s:Boolean x:Key="/Default/RunConfigs/Config/=3D713AF0611AA0468856FFC75756DCBE/@KeyIndexDefined">True</s:Boolean>
+	<s:String x:Key="/Default/RunConfigs/Config/=3D713AF0611AA0468856FFC75756DCBE/Name/@EntryValue">CourseWork_SAIPIS</s:String>
+	<s:String x:Key="/Default/RunConfigs/Config/=3D713AF0611AA0468856FFC75756DCBE/ProjectGuid/@EntryValue">7BA6AE515088B84A921D20408E313A4C</s:String>
+	<s:String x:Key="/Default/RunConfigs/Config/=3D713AF0611AA0468856FFC75756DCBE/Type/@EntryValue">project</s:String></wpf:ResourceDictionary>

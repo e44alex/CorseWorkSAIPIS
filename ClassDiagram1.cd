@@ -1,0 +1,39 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ClassDiagram MajorVersion="1" MinorVersion="1">
+  <Class Name="CourseWork_SAIPIS.Database.Clients">
+    <Position X="0.5" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAACAAAAAAAAAAggAAEAQABAEAAAAAAAAAAAAAAQA=</HashCode>
+      <FileName>Database\Clients.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="CourseWork_SAIPIS.Database.EventsList">
+    <Position X="2.25" Y="2.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAgAAAKAAAAAAAAAAQAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Database\EventsList.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="CourseWork_SAIPIS.Database.Experts">
+    <Position X="4" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>EAAAACAAAAAIAAAgAAAAEAQABAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Database\Experts.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="CourseWork_SAIPIS.Database.Invoice">
+    <Position X="0.5" Y="3.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAgiAAAgAAAABAAAIAAAAAAAAAAAA=</HashCode>
+      <FileName>Database\Invoice.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="CourseWork_SAIPIS.Database.Users">
+    <Position X="2.25" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAEAAACAAAAASAAAAgAAAAAAAACAAAAAAAAAAA=</HashCode>
+      <FileName>Database\Users.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Font Name="Segoe UI" Size="9" />
+</ClassDiagram>

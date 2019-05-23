@@ -1,0 +1,132 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="CourseWorkDBModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityType Name="EventsSet">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Name" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="Point" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="ExpertId" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+    <NavigationProperty Name="Users_Experts" Relationship="Self.ExpertsEvents" FromRole="EventsSet" ToRole="Users_Experts" />
+  </EntityType>
+  <EntityType Name="Invoice">
+    <Key>
+      <PropertyRef Name="InvoiceNumber" />
+    </Key>
+    <Property Name="InvoiceNumber" Type="Int32" Nullable="false" />
+    <Property Name="SendPoint" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+    <Property Name="RecievePoint" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+    <Property Name="CargoWeight" Type="Int32" />
+    <Property Name="ClientId" Type="Int32" Nullable="false" />
+    <Property Name="Time" Type="Decimal" Precision="18" Scale="0" />
+    <NavigationProperty Name="Users_Clients" Relationship="Self.FK_Client_Invoice" FromRole="Invoice" ToRole="Users_Clients" />
+  </EntityType>
+  <EntityType Name="Users">
+    <Key>
+      <PropertyRef Name="UserId" />
+    </Key>
+    <Property Name="UserId" Type="Int32" Nullable="false" />
+    <Property Name="Username" Type="String" MaxLength="20" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="Password" Type="String" MaxLength="20" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="Status" Type="String" MaxLength="20" FixedLength="false" Unicode="true" Nullable="false" />
+    <NavigationProperty Name="Users_Clients" Relationship="Self.FK_Clients_inherits_Users" FromRole="Users" ToRole="Users_Clients" />
+    <NavigationProperty Name="Users_Experts" Relationship="Self.FK_Experts_inherits_Users" FromRole="Users" ToRole="Users_Experts" />
+  </EntityType>
+  <EntityType Name="Users_Clients">
+    <Key>
+      <PropertyRef Name="UserId" />
+    </Key>
+    <Property Name="ClientId" Type="Int32" Nullable="false" />
+    <Property Name="Name" Type="String" MaxLength="20" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="Surname" Type="String" MaxLength="20" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="Patronym" Type="String" MaxLength="20" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="BirthDate" Type="DateTime" Precision="3" />
+    <Property Name="CarType" Type="String" MaxLength="20" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="InvoiceNumber" Type="Int32" Nullable="false" />
+    <Property Name="UserId" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="Invoice" Relationship="Self.FK_Client_Invoice" FromRole="Users_Clients" ToRole="Invoice" />
+    <NavigationProperty Name="Users" Relationship="Self.FK_Clients_inherits_Users" FromRole="Users_Clients" ToRole="Users" />
+  </EntityType>
+  <EntityType Name="Users_Experts">
+    <Key>
+      <PropertyRef Name="UserId" />
+    </Key>
+    <Property Name="ExpertId" Type="Int32" Nullable="false" />
+    <Property Name="Name" Type="String" MaxLength="20" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="Surname" Type="String" MaxLength="20" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="Patronym" Type="String" MaxLength="20" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="BirthDate" Type="DateTime" Precision="3" />
+    <Property Name="Position" Type="String" MaxLength="20" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="UserId" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="Users" Relationship="Self.FK_Experts_inherits_Users" FromRole="Users_Experts" ToRole="Users" />
+    <NavigationProperty Name="EventsSet" Relationship="Self.ExpertsEvents" FromRole="Users_Experts" ToRole="EventsSet" />
+  </EntityType>
+  <Association Name="FK_Client_Invoice">
+    <End Role="Invoice" Type="Self.Invoice" Multiplicity="1" />
+    <End Role="Users_Clients" Type="Self.Users_Clients" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Invoice">
+        <PropertyRef Name="InvoiceNumber" />
+      </Principal>
+      <Dependent Role="Users_Clients">
+        <PropertyRef Name="InvoiceNumber" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Clients_inherits_Users">
+    <End Role="Users" Type="Self.Users" Multiplicity="1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="Users_Clients" Type="Self.Users_Clients" Multiplicity="0..1" />
+    <ReferentialConstraint>
+      <Principal Role="Users">
+        <PropertyRef Name="UserId" />
+      </Principal>
+      <Dependent Role="Users_Clients">
+        <PropertyRef Name="UserId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Experts_inherits_Users">
+    <End Role="Users" Type="Self.Users" Multiplicity="1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="Users_Experts" Type="Self.Users_Experts" Multiplicity="0..1" />
+    <ReferentialConstraint>
+      <Principal Role="Users">
+        <PropertyRef Name="UserId" />
+      </Principal>
+      <Dependent Role="Users_Experts">
+        <PropertyRef Name="UserId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="ExpertsEvents">
+    <End Role="EventsSet" Type="Self.EventsSet" Multiplicity="*" />
+    <End Role="Users_Experts" Type="Self.Users_Experts" Multiplicity="*" />
+  </Association>
+  <EntityContainer Name="CourseWorkDBEntities" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="EventsSet" EntityType="Self.EventsSet" />
+    <EntitySet Name="Invoice" EntityType="Self.Invoice" />
+    <EntitySet Name="Users" EntityType="Self.Users" />
+    <EntitySet Name="Users_Clients" EntityType="Self.Users_Clients" />
+    <EntitySet Name="Users_Experts" EntityType="Self.Users_Experts" />
+    <AssociationSet Name="FK_Client_Invoice" Association="Self.FK_Client_Invoice">
+      <End Role="Invoice" EntitySet="Invoice" />
+      <End Role="Users_Clients" EntitySet="Users_Clients" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Clients_inherits_Users" Association="Self.FK_Clients_inherits_Users">
+      <End Role="Users" EntitySet="Users" />
+      <End Role="Users_Clients" EntitySet="Users_Clients" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Experts_inherits_Users" Association="Self.FK_Experts_inherits_Users">
+      <End Role="Users" EntitySet="Users" />
+      <End Role="Users_Experts" EntitySet="Users_Experts" />
+    </AssociationSet>
+    <AssociationSet Name="ExpertsEvents" Association="Self.ExpertsEvents">
+      <End Role="EventsSet" EntitySet="EventsSet" />
+      <End Role="Users_Experts" EntitySet="Users_Experts" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>

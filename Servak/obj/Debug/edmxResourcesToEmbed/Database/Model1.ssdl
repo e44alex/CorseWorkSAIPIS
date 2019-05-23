@@ -1,0 +1,125 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="CourseWorkDBModel.Store" Alias="Self" Provider="System.Data.SqlClient" ProviderManifestToken="2012" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityContainer Name="CourseWorkDBModelStoreContainer">
+    <EntitySet Name="Clients" EntityType="CourseWorkDBModel.Store.Clients" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="EventsList" EntityType="CourseWorkDBModel.Store.EventsList" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="Experts" EntityType="CourseWorkDBModel.Store.Experts" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="Invoice" EntityType="CourseWorkDBModel.Store.Invoice" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="Users" EntityType="CourseWorkDBModel.Store.Users" store:Type="Tables" Schema="dbo" />
+    <AssociationSet Name="FK_Client_Invoice" Association="CourseWorkDBModel.Store.FK_Client_Invoice">
+      <End Role="Invoice" EntitySet="Invoice" />
+      <End Role="Clients" EntitySet="Clients" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Client_User" Association="CourseWorkDBModel.Store.FK_Client_User">
+      <End Role="Users" EntitySet="Users" />
+      <End Role="Clients" EntitySet="Clients" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Expert_User" Association="CourseWorkDBModel.Store.FK_Expert_User">
+      <End Role="Users" EntitySet="Users" />
+      <End Role="Experts" EntitySet="Experts" />
+    </AssociationSet>
+    <AssociationSet Name="ExpertsEventsList" Association="CourseWorkDBModel.Store.ExpertsEventsList">
+      <End Role="Experts" EntitySet="Experts" />
+      <End Role="EventsList" EntitySet="EventsList" />
+    </AssociationSet>
+  </EntityContainer>
+  <EntityType Name="Clients">
+    <Key>
+      <PropertyRef Name="ClientId" />
+    </Key>
+    <Property Name="ClientId" Type="int" Nullable="false" />
+    <Property Name="Name" Type="nvarchar" Nullable="false" MaxLength="20" />
+    <Property Name="Surname" Type="nvarchar" Nullable="false" MaxLength="20" />
+    <Property Name="Patronym" Type="nvarchar" Nullable="false" MaxLength="20" />
+    <Property Name="BirthDate" Type="datetime" Nullable="true" />
+    <Property Name="CarType" Type="nvarchar" Nullable="false" MaxLength="20" />
+    <Property Name="InvoiceNumber" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="EventsList">
+    <Key>
+      <PropertyRef Name="EventId" />
+    </Key>
+    <Property Name="EventId" Type="int" Nullable="false" />
+    <Property Name="Name" Type="nvarchar" Nullable="false" MaxLength="20" />
+    <Property Name="ExpertId" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Experts">
+    <Key>
+      <PropertyRef Name="ExpertId" />
+    </Key>
+    <Property Name="ExpertId" Type="int" Nullable="false" />
+    <Property Name="Name" Type="nvarchar" Nullable="false" MaxLength="20" />
+    <Property Name="Surname" Type="nvarchar" Nullable="false" MaxLength="20" />
+    <Property Name="Patronym" Type="nvarchar" Nullable="false" MaxLength="20" />
+    <Property Name="BirthDate" Type="datetime" Nullable="true" />
+    <Property Name="Position" Type="nvarchar" Nullable="false" MaxLength="20" />
+  </EntityType>
+  <EntityType Name="Invoice">
+    <Key>
+      <PropertyRef Name="InvoiceNumber" />
+    </Key>
+    <Property Name="InvoiceNumber" Type="int" Nullable="false" />
+    <Property Name="SendPoint" Type="varchar" Nullable="true" MaxLength="20" />
+    <Property Name="RecievePoint" Type="varchar" Nullable="true" MaxLength="20" />
+    <Property Name="CargoWeight" Type="int" Nullable="true" />
+    <Property Name="ClientId" Type="int" Nullable="false" />
+    <Property Name="Time" Type="decimal" Nullable="true" Precision="18" Scale="0" />
+  </EntityType>
+  <EntityType Name="Users">
+    <Key>
+      <PropertyRef Name="UserId" />
+    </Key>
+    <Property Name="UserId" Type="int" Nullable="false" />
+    <Property Name="Username" Type="nvarchar" Nullable="false" MaxLength="20" />
+    <Property Name="Password" Type="nvarchar" Nullable="false" MaxLength="20" />
+    <Property Name="Status" Type="nvarchar" Nullable="false" MaxLength="20" />
+  </EntityType>
+  <Association Name="FK_Client_Invoice">
+    <End Role="Invoice" Type="CourseWorkDBModel.Store.Invoice" Multiplicity="1" />
+    <End Role="Clients" Type="CourseWorkDBModel.Store.Clients" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Invoice">
+        <PropertyRef Name="InvoiceNumber" />
+      </Principal>
+      <Dependent Role="Clients">
+        <PropertyRef Name="InvoiceNumber" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Client_User">
+    <End Role="Users" Type="CourseWorkDBModel.Store.Users" Multiplicity="1" />
+    <End Role="Clients" Type="CourseWorkDBModel.Store.Clients" Multiplicity="0..1" />
+    <ReferentialConstraint>
+      <Principal Role="Users">
+        <PropertyRef Name="UserId" />
+      </Principal>
+      <Dependent Role="Clients">
+        <PropertyRef Name="ClientId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Expert_User">
+    <End Role="Users" Type="CourseWorkDBModel.Store.Users" Multiplicity="1" />
+    <End Role="Experts" Type="CourseWorkDBModel.Store.Experts" Multiplicity="0..1" />
+    <ReferentialConstraint>
+      <Principal Role="Users">
+        <PropertyRef Name="UserId" />
+      </Principal>
+      <Dependent Role="Experts">
+        <PropertyRef Name="ExpertId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="ExpertsEventsList">
+    <End Role="Experts" Type="CourseWorkDBModel.Store.Experts" Multiplicity="1" />
+    <End Role="EventsList" Type="CourseWorkDBModel.Store.EventsList" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Experts">
+        <PropertyRef Name="ExpertId" />
+      </Principal>
+      <Dependent Role="EventsList">
+        <PropertyRef Name="ExpertId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+</Schema>

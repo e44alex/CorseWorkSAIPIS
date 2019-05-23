@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="42fe179c20d64c1daee197b6b7877d45" Name="Diagram1">
+        <EntityTypeShape EntityType="CourseWorkDBModel.Clients" Width="1.5" PointX="3" PointY="3.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="CourseWorkDBModel.EventsList" Width="1.5" PointX="5.25" PointY="7.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="CourseWorkDBModel.Experts" Width="1.5" PointX="3" PointY="7" IsExpanded="true" />
+        <EntityTypeShape EntityType="CourseWorkDBModel.Invoice" Width="1.5" PointX="0.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="CourseWorkDBModel.sysdiagrams" Width="1.5" PointX="5.75" PointY="1.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="CourseWorkDBModel.Users" Width="1.5" PointX="0.75" PointY="3.75" IsExpanded="true" />
+        <AssociationConnector Association="CourseWorkDBModel.FK_Client_Invoice" ManuallyRouted="false" />
+        <AssociationConnector Association="CourseWorkDBModel.FK_Client_User" ManuallyRouted="false" />
+        <AssociationConnector Association="CourseWorkDBModel.FK_Event_Expert" ManuallyRouted="false" />
+        <AssociationConnector Association="CourseWorkDBModel.FK_Expert_User" ManuallyRouted="false" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

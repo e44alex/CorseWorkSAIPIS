@@ -1,0 +1,66 @@
+﻿<Window x:Class="CourseWork_SAIPIS.InvoiceWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:CourseWork_SAIPIS"
+        mc:Ignorable="d"
+        Title="InvoiceWindow" Height="299.003" Width="512.957">
+    <Grid >
+        <Grid.RowDefinitions>
+            <RowDefinition Height="93*"/>
+            <RowDefinition Height="41*"/>
+        </Grid.RowDefinitions>
+        <Grid Margin="10" Grid.Column="0" Background="White">
+            <TextBox x:Name="NumberField" HorizontalAlignment="Left" Height="16.96" Margin="146.111,49.002,0,0" TextWrapping="Wrap"  VerticalAlignment="Top" Width="328.846" RenderTransformOrigin="0.662,0.5" Background="White">
+                <TextBox.BorderBrush>
+                    <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                        <GradientStop Color="White" Offset="0.849"/>
+                        <GradientStop Color="#FE5F5F5F" Offset="1"/>
+                    </LinearGradientBrush>
+                </TextBox.BorderBrush>
+            </TextBox>
+            <TextBlock  HorizontalAlignment="Left" Margin="12.666,50.002,0,0" TextWrapping="Wrap" Text="Номер ТТН" VerticalAlignment="Top" Width="100.084" FontFamily="Microsoft JhengHei Light"/>
+            <TextBlock  HorizontalAlignment="Left" Margin="12.666,71.002,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Height="16" FontFamily="Microsoft JhengHei Light" Width="132.309"><Run Text="Пункт Отправления"/><LineBreak/><Run/></TextBlock>
+            <TextBlock  HorizontalAlignment="Left" Margin="12.666,92.002,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Height="16" FontFamily="Microsoft JhengHei Light" Width="124.235"><Run Text="Пункт "/><Run Text="Назначения"/><LineBreak/><Run/></TextBlock>
+            <TextBlock  HorizontalAlignment="Left" Margin="12.666,113.002,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Height="16" FontFamily="Microsoft JhengHei Light" Width="100.52"><Run Text="Масса груза"/><Run Text=" (т)"/><LineBreak/><Run/></TextBlock>
+            <TextBlock HorizontalAlignment="Left" Margin="12.666,134.002,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Height="16" FontFamily="Microsoft JhengHei Light" Width="269.273"><Run Text="Время прохождения таможенного контроля"/><Run Text=" "/><Run Text="(ч)"/><LineBreak/><Run/></TextBlock>
+            <TextBox x:Name="FromField" HorizontalAlignment="Left" Height="16.04" Margin="146.111,70.962,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="328.846" Background="White" >
+                <TextBox.BorderBrush>
+                    <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                        <GradientStop Color="White" Offset="0.799"/>
+                        <GradientStop Color="#FE5F5F5F" Offset="1"/>
+                    </LinearGradientBrush>
+                </TextBox.BorderBrush>
+            </TextBox>
+            <TextBox x:Name="ToField" HorizontalAlignment="Left" Height="16" Margin="146.111,92.002,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="328.846" Background="White">
+                <TextBox.BorderBrush>
+                    <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                        <GradientStop Color="White" Offset="0.849"/>
+                        <GradientStop Color="#FE5F5F5F" Offset="1"/>
+                    </LinearGradientBrush>
+                </TextBox.BorderBrush>
+            </TextBox>
+            <TextBox x:Name="WeightField" Height="12" Margin="146.111,117.002,203.018,0" TextWrapping="Wrap" VerticalAlignment="Top" Background="White"  >
+                <TextBox.BorderBrush>
+                    <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                        <GradientStop Color="White" Offset="0.849"/>
+                        <GradientStop Color="#FE5F5F5F" Offset="1"/>
+                    </LinearGradientBrush>
+                </TextBox.BorderBrush>
+            </TextBox>
+            <TextBox x:Name="TimeField" HorizontalAlignment="Left" Height="16" Margin="286.939,134.002,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="188.018" Background="White">
+                <TextBox.BorderBrush>
+                    <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                        <GradientStop Color="White" Offset="0.849"/>
+                        <GradientStop Color="#FE5F5F5F" Offset="1"/>
+                    </LinearGradientBrush>
+                </TextBox.BorderBrush>
+            </TextBox>
+            <TextBlock HorizontalAlignment="Left" Margin="10,10,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="464.957" FontSize="14" FontFamily="Microsoft JhengHei"><Run Text="Пожалуйста, заполните следующие поля и нажмите кнопку "/><Run Text="&quot;"/><Run Text="отправить"/><Run Text="&quot;"/><Run Text=":"/></TextBlock>
+
+        </Grid>
+        <Button Content="Отправить" HorizontalAlignment="Left" Margin="10,10,0,0" Grid.Row="1" VerticalAlignment="Top" Width="485" Height="62" FontSize="24" Click="ButtonBase_OnClick" FontFamily="Microsoft JhengHei UI"/>
+
+    </Grid>
+</Window>

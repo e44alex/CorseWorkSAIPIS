@@ -1,0 +1,72 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="Хранилище CourseWorkDBModelContainer" CdmEntityContainer="CourseWorkDBEntities">
+    <EntitySetMapping Name="EventsSet">
+      <EntityTypeMapping TypeName="CourseWorkDBModel.EventsSet">
+        <MappingFragment StoreEntitySet="EventsSet">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="Point" ColumnName="Point" />
+          <ScalarProperty Name="ExpertId" ColumnName="ExpertId" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Invoice">
+      <EntityTypeMapping TypeName="CourseWorkDBModel.Invoice">
+        <MappingFragment StoreEntitySet="Invoice">
+          <ScalarProperty Name="InvoiceNumber" ColumnName="InvoiceNumber" />
+          <ScalarProperty Name="SendPoint" ColumnName="SendPoint" />
+          <ScalarProperty Name="RecievePoint" ColumnName="RecievePoint" />
+          <ScalarProperty Name="CargoWeight" ColumnName="CargoWeight" />
+          <ScalarProperty Name="ClientId" ColumnName="ClientId" />
+          <ScalarProperty Name="Time" ColumnName="Time" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Users">
+      <EntityTypeMapping TypeName="CourseWorkDBModel.Users">
+        <MappingFragment StoreEntitySet="Users">
+          <ScalarProperty Name="UserId" ColumnName="UserId" />
+          <ScalarProperty Name="Username" ColumnName="Username" />
+          <ScalarProperty Name="Password" ColumnName="Password" />
+          <ScalarProperty Name="Status" ColumnName="Status" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Users_Clients">
+      <EntityTypeMapping TypeName="CourseWorkDBModel.Users_Clients">
+        <MappingFragment StoreEntitySet="Users_Clients">
+          <ScalarProperty Name="ClientId" ColumnName="ClientId" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="Surname" ColumnName="Surname" />
+          <ScalarProperty Name="Patronym" ColumnName="Patronym" />
+          <ScalarProperty Name="BirthDate" ColumnName="BirthDate" />
+          <ScalarProperty Name="CarType" ColumnName="CarType" />
+          <ScalarProperty Name="InvoiceNumber" ColumnName="InvoiceNumber" />
+          <ScalarProperty Name="UserId" ColumnName="UserId" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Users_Experts">
+      <EntityTypeMapping TypeName="CourseWorkDBModel.Users_Experts">
+        <MappingFragment StoreEntitySet="Users_Experts">
+          <ScalarProperty Name="ExpertId" ColumnName="ExpertId" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="Surname" ColumnName="Surname" />
+          <ScalarProperty Name="Patronym" ColumnName="Patronym" />
+          <ScalarProperty Name="BirthDate" ColumnName="BirthDate" />
+          <ScalarProperty Name="Position" ColumnName="Position" />
+          <ScalarProperty Name="UserId" ColumnName="UserId" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <AssociationSetMapping Name="ExpertsEvents" TypeName="CourseWorkDBModel.ExpertsEvents" StoreEntitySet="ExpertsEvents">
+      <EndProperty Name="EventsSet">
+        <ScalarProperty Name="Id" ColumnName="Events_Id" />
+      </EndProperty>
+      <EndProperty Name="Users_Experts">
+        <ScalarProperty Name="UserId" ColumnName="Experts_UserId" />
+      </EndProperty>
+    </AssociationSetMapping>
+  </EntityContainerMapping>
+</Mapping>

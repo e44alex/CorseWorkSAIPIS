@@ -1,0 +1,157 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="Хранилище CourseWorkDBModel" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityType Name="EventsSet">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Name" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="Point" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="ExpertId" Type="nvarchar(max)" Nullable="false" />
+  </EntityType>
+  <EntityType Name="ExpertsEvents">
+    <Key>
+      <PropertyRef Name="Experts_UserId" />
+      <PropertyRef Name="Events_Id" />
+    </Key>
+    <Property Name="Experts_UserId" Type="int" Nullable="false" />
+    <Property Name="Events_Id" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Invoice">
+    <Key>
+      <PropertyRef Name="InvoiceNumber" />
+    </Key>
+    <Property Name="InvoiceNumber" Type="int" Nullable="false" />
+    <Property Name="SendPoint" Type="varchar" MaxLength="20" />
+    <Property Name="RecievePoint" Type="varchar" MaxLength="20" />
+    <Property Name="CargoWeight" Type="int" />
+    <Property Name="ClientId" Type="int" Nullable="false" />
+    <Property Name="Time" Type="decimal" Precision="18" Scale="0" />
+  </EntityType>
+  <EntityType Name="Users">
+    <Key>
+      <PropertyRef Name="UserId" />
+    </Key>
+    <Property Name="UserId" Type="int" Nullable="false" />
+    <Property Name="Username" Type="nvarchar" MaxLength="20" Nullable="false" />
+    <Property Name="Password" Type="nvarchar" MaxLength="20" Nullable="false" />
+    <Property Name="Status" Type="nvarchar" MaxLength="20" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Users_Clients">
+    <Key>
+      <PropertyRef Name="UserId" />
+    </Key>
+    <Property Name="ClientId" Type="int" Nullable="false" />
+    <Property Name="Name" Type="nvarchar" MaxLength="20" Nullable="false" />
+    <Property Name="Surname" Type="nvarchar" MaxLength="20" Nullable="false" />
+    <Property Name="Patronym" Type="nvarchar" MaxLength="20" Nullable="false" />
+    <Property Name="BirthDate" Type="datetime" />
+    <Property Name="CarType" Type="nvarchar" MaxLength="20" Nullable="false" />
+    <Property Name="InvoiceNumber" Type="int" Nullable="false" />
+    <Property Name="UserId" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Users_Experts">
+    <Key>
+      <PropertyRef Name="UserId" />
+    </Key>
+    <Property Name="ExpertId" Type="int" Nullable="false" />
+    <Property Name="Name" Type="nvarchar" MaxLength="20" Nullable="false" />
+    <Property Name="Surname" Type="nvarchar" MaxLength="20" Nullable="false" />
+    <Property Name="Patronym" Type="nvarchar" MaxLength="20" Nullable="false" />
+    <Property Name="BirthDate" Type="datetime" />
+    <Property Name="Position" Type="nvarchar" MaxLength="20" Nullable="false" />
+    <Property Name="UserId" Type="int" Nullable="false" />
+  </EntityType>
+  <Association Name="FK_Client_Invoice">
+    <End Role="Invoice" Type="Self.Invoice" Multiplicity="1" />
+    <End Role="Users_Clients" Type="Self.Users_Clients" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Invoice">
+        <PropertyRef Name="InvoiceNumber" />
+      </Principal>
+      <Dependent Role="Users_Clients">
+        <PropertyRef Name="InvoiceNumber" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Clients_inherits_Users">
+    <End Role="Users" Type="Self.Users" Multiplicity="1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="Users_Clients" Type="Self.Users_Clients" Multiplicity="0..1" />
+    <ReferentialConstraint>
+      <Principal Role="Users">
+        <PropertyRef Name="UserId" />
+      </Principal>
+      <Dependent Role="Users_Clients">
+        <PropertyRef Name="UserId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Experts_inherits_Users">
+    <End Role="Users" Type="Self.Users" Multiplicity="1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="Users_Experts" Type="Self.Users_Experts" Multiplicity="0..1" />
+    <ReferentialConstraint>
+      <Principal Role="Users">
+        <PropertyRef Name="UserId" />
+      </Principal>
+      <Dependent Role="Users_Experts">
+        <PropertyRef Name="UserId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_ExpertsEvents_Events">
+    <End Role="EventsSet" Type="Self.EventsSet" Multiplicity="1" />
+    <End Role="ExpertsEvents" Type="Self.ExpertsEvents" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="EventsSet">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="ExpertsEvents">
+        <PropertyRef Name="Events_Id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_ExpertsEvents_Experts">
+    <End Role="Users_Experts" Type="Self.Users_Experts" Multiplicity="1" />
+    <End Role="ExpertsEvents" Type="Self.ExpertsEvents" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Users_Experts">
+        <PropertyRef Name="UserId" />
+      </Principal>
+      <Dependent Role="ExpertsEvents">
+        <PropertyRef Name="Experts_UserId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="Хранилище CourseWorkDBModelContainer">
+    <EntitySet Name="EventsSet" EntityType="Self.EventsSet" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="ExpertsEvents" EntityType="Self.ExpertsEvents" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Invoice" EntityType="Self.Invoice" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Users" EntityType="Self.Users" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Users_Clients" EntityType="Self.Users_Clients" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Users_Experts" EntityType="Self.Users_Experts" Schema="dbo" store:Type="Tables" />
+    <AssociationSet Name="FK_Client_Invoice" Association="Self.FK_Client_Invoice">
+      <End Role="Invoice" EntitySet="Invoice" />
+      <End Role="Users_Clients" EntitySet="Users_Clients" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Clients_inherits_Users" Association="Self.FK_Clients_inherits_Users">
+      <End Role="Users" EntitySet="Users" />
+      <End Role="Users_Clients" EntitySet="Users_Clients" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Experts_inherits_Users" Association="Self.FK_Experts_inherits_Users">
+      <End Role="Users" EntitySet="Users" />
+      <End Role="Users_Experts" EntitySet="Users_Experts" />
+    </AssociationSet>
+    <AssociationSet Name="FK_ExpertsEvents_Events" Association="Self.FK_ExpertsEvents_Events">
+      <End Role="EventsSet" EntitySet="EventsSet" />
+      <End Role="ExpertsEvents" EntitySet="ExpertsEvents" />
+    </AssociationSet>
+    <AssociationSet Name="FK_ExpertsEvents_Experts" Association="Self.FK_ExpertsEvents_Experts">
+      <End Role="Users_Experts" EntitySet="Users_Experts" />
+      <End Role="ExpertsEvents" EntitySet="ExpertsEvents" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>
